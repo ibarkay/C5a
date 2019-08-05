@@ -15,7 +15,7 @@ def read_msgB64():
         listy.append([fily.decode('base64'),fname])
     return listy
 
-filysh = open('bin_try','wb')
+filysh = open('bin_try','wb')   #makeing a new bin file from bin files in the right oreder
 
 
 def reaf_binar():
