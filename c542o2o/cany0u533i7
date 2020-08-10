@@ -1,0 +1,59 @@
+from  PIL import Image
+import glob
+import time
+import os , sys
+import numpy as np
+
+
+listy = (glob.glob(r"c:\Users\ibark\Downloads\Good\frames4\*"))
+listy = [x.replace('c:\\Users\\ibark\\Downloads\\Good\\frames4\\c01_','') for x in listy]
+listyFix = []
+for i in listy:
+    f = ""
+    for j in i:
+        if j.isdigit():
+            f += j
+    listyFix.append(f)
+
+
+listyFix.sort(key=int)
+print(listy)
+NM = 0
+PixelsArray = []
+outy = open('PIXELS.txt','w')
+for i in listyFix:
+    C = [(576, (251, 253, 250))]
+    C2 = [(576, (0, 0, 0))]
+    C3 = [(576, (96, 98, 95))]
+    a = Image.open(r'c:\Users\ibark\Downloads\Good\frames4\c01_{}.jpeg'.format(i))
+
+    colors = a.convert('RGB').getcolors() #this converts the mode to RGB
+    #if colors != C and colors != C2 and colors != C3:
+
+    #outy.write(str(colors)+'\n')
+
+    PixelsArray.append(colors[0][1])
+print(PixelsArray)
+
+#PixelsArray= PixelsArray[150:]
+print(len(PixelsArray))
+
+def newImg():
+    img = Image.new('RGB', (317,1438))
+    N = 0
+    for i in range(img.size[0]):
+        for j in range(img.size[1]):
+
+                #print(len(PixelsArray))
+                img.putpixel((i,j),PixelsArray[N])
+                N += 1
+
+                #print(i,j)
+
+
+    img.save('sqr.png')
+
+    return img
+
+wallpaper = newImg()
+wallpaper.show()
