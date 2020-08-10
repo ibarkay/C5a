@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-# Tricky by Fabien and ibarkay.
+# Tricky by  and ibarkay.
 
 from pwn import *
 import sys
